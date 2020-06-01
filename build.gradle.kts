@@ -5,6 +5,7 @@ plugins {
 	id("io.spring.dependency-management") version "1.0.9.RELEASE"
 	kotlin("jvm") version "1.3.72"
 	kotlin("plugin.spring") version "1.3.72"
+//	id("com.google.cloud.tools.appengine") version "2.1.0" // 追加
 }
 
 group = "com.example"
@@ -19,6 +20,7 @@ configurations {
 
 repositories {
 	mavenCentral()
+	google()
 	jcenter()
 }
 
@@ -34,6 +36,11 @@ dependencies {
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+//	implementation("com.google.cloud:google-cloud-language:1.19.4")
+//	implementation("com.googlecode.json-simple:json-simple:1.1.1")
+	compile ("com.google.cloud:google-cloud-language:1.100.0")
+	//compile("com.google.cloud:google-cloud-language")
+	//runtime(group = "com.google.cloud", name = "google-cloud-language")
 	implementation(fileTree("libs/twitter4j-core-4.0.7.jar"))
 	compileOnly("org.projectlombok:lombok")
 	developmentOnly("org.springframework.boot:spring-boot-devtools")

@@ -26,11 +26,6 @@ class TwitterCallbackController {
             //if we get here, the user didn't authorize the app
             return "redirect:twitterLogin"
         }
-
-        //get the objects from the session
-
-        //Twitter twitter = (Twitter) request.getSession().getAttribute("twitter");
-        //RequestToken requestToken = (RequestToken) request.getSession().getAttribute("requestToken");
         val twitter = session!!.getAttribute("twitter") as Twitter
         val requestToken = session!!.getAttribute("requestToken") as RequestToken
         println(twitter)
@@ -39,16 +34,14 @@ class TwitterCallbackController {
             //get the access token
             val token = twitter.getOAuthAccessToken(requestToken, oauthVerifier)
             session!!.setAttribute("AccessToken", token)
-
             //take the request token out of the session
             request.session.removeAttribute("requestToken")
-
             //store the user name so we can display it on the web page
             model.addAttribute("username", twitter.screenName)
-            "twitterLoggedIn"
+            return "top"
         } catch (e: Exception) {
             LOGGER.error("Problem getting token!", e)
-            "redirect:twitterLogin"
+            return "redirect:twitterLogin"
         }
     }
 
