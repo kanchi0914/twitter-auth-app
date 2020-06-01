@@ -1,5 +1,5 @@
 # 概要
-Auth認証を利用したTwitterクライアントのデモアプリ
+Auth認証を利用したTwitterクライアントのデモアプリ  
 GCPのNatural Language APIを使い、ネガティブなツイートを非表示にする
 
 ## 環境
@@ -21,5 +21,5 @@ GCPのNatural Language APIを使い、ネガティブなツイートを非表示
 
 ## 参考サイト
 
-https://careydevelopment.us/2017/05/24/implement-twitter-login-solution-spring-boot/
+https://careydevelopment.us/2017/05/24/implement-twitter-login-solution-spring-boot/  
 https://cloud.google.com/natural-language/docs/analyzing-sentiment?hl=jahttps://cloud.google.com/natural-language/docs/analyzing-sentiment?hl=ja
