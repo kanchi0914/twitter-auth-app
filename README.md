@@ -9,7 +9,6 @@ GCPのNatural Language APIを使い、ネガティブなツイートを非表示
 - Google Natural Language Api 1.100.0
 
 ## 画面
-![ログイン](images/login.png "login")
 ![トップ画面](images/top.png "top")
 
 ## 感想
