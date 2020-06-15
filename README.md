@@ -1,8 +1,8 @@
 # 概要
-Auth認証を利用したTwitterクライアントのデモアプリ  
-GCPのNatural Language APIを使い、ネガティブなツイートを非表示にする
+Auth認証を利用したTwitterクライアントのデモアプリです。 
+GCPのNatural Language APIを使い、ネガティブなツイートを非表示にします。
 
-## 環境
+### 環境
 - Spring Boot 2.3.0
 - Gradle 6.0.1
 - twitter4j 4.0.7
