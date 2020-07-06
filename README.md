@@ -1,6 +1,7 @@
 # 概要
 Auth認証を利用したTwitterクライアントのデモアプリです。 
 GCPのNatural Language APIを使い、ネガティブなツイートを非表示にします。
+http://ec2-3-22-197-231.us-east-2.compute.amazonaws.com:8090/
 
 ### 環境
 - Spring Boot 2.3.0
