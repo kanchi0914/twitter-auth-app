@@ -62,12 +62,64 @@ dependencies {
 
 tasks.register("npmRunBuild"){
 	doFirst(){
-		println("aaaa")
-		val aa = ""
+
+		fun String.runCommand0(workingDir: File) {
+			ProcessBuilder(*split(" ").toTypedArray())
+					.directory(workingDir)
+					.redirectOutput(ProcessBuilder.Redirect.INHERIT)
+					.redirectError(ProcessBuilder.Redirect.INHERIT)
+					.start()
+					.waitFor(60, TimeUnit.MINUTES)
+		}
+
+		fun String.runCommand(workingDir: File): String? {
+			try {
+				val parts = this.split("\\s".toRegex())
+				val proc = ProcessBuilder(*parts.toTypedArray())
+						.directory(workingDir)
+						.redirectOutput(ProcessBuilder.Redirect.PIPE)
+						.redirectError(ProcessBuilder.Redirect.PIPE)
+						.start()
+
+				proc.waitFor(60, TimeUnit.MINUTES)
+				return proc.inputStream.bufferedReader().readText()
+			} catch(e: java.io.IOException) {
+				e.printStackTrace()
+				return null
+			}
+		}
+		fun String.runCommand10(workingDir: File = file("./")): String {
+			val parts = this.split("\\s".toRegex())
+			val proc = ProcessBuilder(*parts.toTypedArray())
+					.directory(workingDir)
+					.redirectOutput(ProcessBuilder.Redirect.PIPE)
+					.redirectError(ProcessBuilder.Redirect.PIPE)
+					.start()
+
+			proc.waitFor(1, TimeUnit.MINUTES)
+			return proc.inputStream.bufferedReader().readText().trim()
+		}
+
+//		fun myprint(){
+//			println("aaaaa!!")
+//		}
+
+
+		"npm run build".runCommand(File("./web/twitter-app-web"))
+		//println("dsadasda")
+		//"npm --prefix ${rootDir}/web run build".runCommand0(File("./out"))
+
+//		println("aaaa")
+//		val aa = ""
+//		myprint()
 		//"ls".runCommand("./")
-		Runtime.getRuntime().exec("echo aaaaa")
-				.outputStream(System.out)
+//		Runtime.getRuntime().exec("echo aaaaa")
+//				.outputStream(System.out)
+
+
 	}
+
+
 }
 
 //task npmRunBuild() {
