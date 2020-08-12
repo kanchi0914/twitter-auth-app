@@ -1,5 +1,12 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
+
+/**
+ *
+ * https://radiochemical.hatenablog.com/entry/2019/09/25/190500
+ */
+
+
 plugins {
 	id("org.springframework.boot") version "2.3.0.RELEASE"
 	id("io.spring.dependency-management") version "1.0.9.RELEASE"
@@ -52,6 +59,32 @@ dependencies {
 	testImplementation("org.springframework.security:spring-security-test")
 }
 
+
+tasks.register("npmRunBuild"){
+	doFirst(){
+		println("aaaa")
+		val aa = ""
+		//"ls".runCommand("./")
+		Runtime.getRuntime().exec("echo aaaaa")
+				.outputStream(System.out)
+	}
+}
+
+//task npmRunBuild() {
+//	if (!file("${rootDir}/web/node_modules").exists()) {
+//		"npm --prefix ${rootDir}/web install ${rootDir}/web"
+//				.execute()
+//				.waitForProcessOutput(System.out, System.err)
+//	}
+//	"npm --prefix ${rootDir}/web run build"
+//			.execute()
+//			.waitForProcessOutput(System.out, System.err)
+//}
+//
+//processResources {
+//	dependsOn npmRunBuild
+//}
+
 tasks.withType<Test> {
 	useJUnitPlatform()
 }
@@ -59,6 +92,6 @@ tasks.withType<Test> {
 tasks.withType<KotlinCompile> {
 	kotlinOptions {
 		freeCompilerArgs = listOf("-Xjsr305=strict")
-		jvmTarget = "1.8"
+		jvmTarget = "11"
 	}
 }
