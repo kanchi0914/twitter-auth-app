@@ -23,9 +23,10 @@ class TwitterCallbackController {
                         @RequestParam(value = "denied", required = false) denied: String?,
                         request: HttpServletRequest, response: HttpServletResponse?, model: Model): String {
         if (denied != null) {
-            //if we get here, the user didn't authorize the app
             return "redirect:twitterLogin"
         }
+        var sadfs= session!!.getAttribute("twitter");
+        var saw = session!!.getAttribute("requestToken");
         val twitter = session!!.getAttribute("twitter") as Twitter
         val requestToken = session!!.getAttribute("requestToken") as RequestToken
         println(twitter)
@@ -38,10 +39,10 @@ class TwitterCallbackController {
             request.session.removeAttribute("requestToken")
             //store the user name so we can display it on the web page
             model.addAttribute("username", twitter.screenName)
-            return "top"
+            return "redirect:http://localhost:3000/callback"
         } catch (e: Exception) {
             LOGGER.error("Problem getting token!", e)
-            return "redirect:twitterLogin"
+            return "redirect:http://localhost:3000"
         }
     }
 

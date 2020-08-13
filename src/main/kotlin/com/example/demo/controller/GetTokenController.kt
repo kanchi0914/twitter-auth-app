@@ -2,20 +2,77 @@ package com.example.demo.controller
 
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.http.HttpStatus
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
-import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.web.bind.annotation.*
 import org.springframework.web.servlet.view.RedirectView
 import twitter4j.Twitter
 import twitter4j.TwitterFactory
+import twitter4j.auth.RequestToken
 import twitter4j.conf.ConfigurationBuilder
 import javax.servlet.http.HttpServletRequest
+import javax.servlet.http.HttpServletResponse
 import javax.servlet.http.HttpSession
 
-@Controller
+@RestController
 class GetTokenController {
     @Autowired
     var session: HttpSession? = null
+
+    @CrossOrigin
+    @RequestMapping(
+            "api/getCallBackUrl",
+            method = [RequestMethod.GET]
+    )
+    @ResponseStatus(HttpStatus.OK)
+    fun getCallBackUrl(
+            request: HttpServletRequest, response: HttpServletResponse?
+    ): String{
+        var twitterUrl = ""
+        try {
+            val twitter = twitter
+            val callbackUrl = "http://localhost:8090/twitterCallback"
+            val requestToken = twitter!!.getOAuthRequestToken(callbackUrl)
+            session!!.setAttribute("requestToken", requestToken)
+            session!!.setAttribute("twitter", twitter)
+            var aaa = session!!.getAttribute("twitter")
+            var bbbbb =  session!!.getAttribute("requestToken")
+            twitterUrl = requestToken.authorizationURL
+            LOGGER.info("Authorization url is $twitterUrl")
+        } catch (e: Exception) {
+            LOGGER.error("Problem logging in with Twitter!", e)
+        }
+        var aaa = session!!.getAttribute("twitter")
+        var bbbbb =  session!!.getAttribute("requestToken")
+        return twitterUrl
+    }
+
+    @CrossOrigin
+    @RequestMapping(
+            "api/callback2",
+            method = [RequestMethod.GET]
+    )
+    @ResponseStatus(HttpStatus.OK)
+    fun getCallBackUrl2(
+            @RequestParam(value = "oauth_verifier", required = false) oauthVerifier: String?,
+            @RequestParam(value = "denied", required = false) denied: String?,
+            request: HttpServletRequest, response: HttpServletResponse?
+    ): String{
+        var laa = session!!.attributeNames
+        val twitter = session!!.getAttribute("twitter") as Twitter
+        val requestToken = session!!.getAttribute("requestToken") as RequestToken
+        println(requestToken)
+        return try {
+            val token = twitter.getOAuthAccessToken(requestToken, oauthVerifier)
+            session!!.setAttribute("AccessToken", token)
+            session!!.removeAttribute("requestToken")
+            return twitter.getHomeTimeline().first().toString()
+        } catch (e: Exception) {
+            //TwitterCallbackController.LOGGER.error("Problem getting token!", e)
+            return "redirect:http://localhost:4000"
+        }
+    }
 
     @RequestMapping("/getToken")
     fun getToken(request: HttpServletRequest?, model: Model?): RedirectView {
@@ -42,6 +99,9 @@ class GetTokenController {
 
             //now get the authorization URL from the token
             twitterUrl = requestToken.authorizationURL
+
+
+
             LOGGER.info("Authorization url is $twitterUrl")
         } catch (e: Exception) {
             LOGGER.error("Problem logging in with Twitter!", e)

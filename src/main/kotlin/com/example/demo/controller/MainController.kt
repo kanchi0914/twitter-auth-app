@@ -25,11 +25,13 @@ class MainController {
         try {
             val twitter = session!!.getAttribute("twitter") as Twitter
             val statusesTmp = twitter.getHomeTimeline();
+            println(statusesTmp)
             var statuses = mutableListOf<Status>()
             for (status in statusesTmp) {
-                if (gcp.isPositive(status.text)){
-                    statuses.add(status)
-                }
+                statuses.add(status)
+//                if (gcp.isPositive(status.text)){
+//                    statuses.add(status)
+//                }
             }
             model.addAttribute("statuses", statuses)
             return "top"
