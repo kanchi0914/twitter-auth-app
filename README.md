@@ -1,4 +1,5 @@
 # 概要
+フロントエンド部分：https://github.com/nomurashunta/twitter_app_frontend (進行中)  
 Auth認証を利用したTwitterクライアントのデモアプリです。 
 GCPのNatural Language APIを使い、ネガティブなツイートを非表示にします。
 http://ec2-3-22-197-231.us-east-2.compute.amazonaws.com:8090/
