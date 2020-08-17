@@ -25,15 +25,12 @@ class TwitterCallbackController {
         if (denied != null) {
             return "redirect:twitterLogin"
         }
-        var sadfs= session!!.getAttribute("twitter");
-        var saw = session!!.getAttribute("requestToken");
         val twitter = session!!.getAttribute("twitter") as Twitter
         val requestToken = session!!.getAttribute("requestToken") as RequestToken
-        println(twitter)
-        println(requestToken)
         return try {
             //get the access token
             val token = twitter.getOAuthAccessToken(requestToken, oauthVerifier)
+
             session!!.setAttribute("AccessToken", token)
             //take the request token out of the session
             request.session.removeAttribute("requestToken")

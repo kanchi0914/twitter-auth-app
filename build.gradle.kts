@@ -56,6 +56,20 @@ dependencies {
 		exclude(group = "org.junit.vintage", module = "junit-vintage-engine")
 	}
 
+	/*jackson*/
+	implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.8.5")
+	implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.10.1")
+	implementation("com.fasterxml.jackson.core:jackson-core:2.10.1")
+	implementation("com.fasterxml.jackson.core:jackson-databind:2.10.1")
+	implementation("com.fasterxml.jackson.core:jackson-annotations:2.10.1")
+	implementation("com.fasterxml.jackson.datatype:jackson-datatype-jdk8:2.10.1")
+	implementation("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.10.1")
+	implementation("com.fasterxml.jackson.module:jackson-module-parameter-names:2.10.1")
+	implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.10.1")
+	implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.10.1")
+	implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.10.1")
+
+
 	testImplementation("org.springframework.security:spring-security-test")
 }
 
