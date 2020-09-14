@@ -37,9 +37,9 @@ class GetTokenController {
         var twitterUrl = ""
         try {
             val twitter = twitter
-            val callbackUrl = "http://localhost:4000/callback"
+            val callbackUrl = "http://localhost:8090/twitterCallback"
             val requestToken = twitter!!.getOAuthRequestToken(callbackUrl)
-            session!!.setAttribute("requestToken", requestToken)
+            val aaaaa = session!!.setAttribute("requestToken", requestToken)
             session!!.setAttribute("twitter", twitter)
             request.getSession(true).setAttribute("requestToken", requestToken );
             request.getSession(true).setAttribute("twitter", twitter );

@@ -19,7 +19,9 @@ class TwitterCallbackController {
 
     //This is where we land when we get back from Twitter
     @RequestMapping("/twitterCallback")
-    fun twitterCallback(@RequestParam(value = "oauth_verifier", required = false) oauthVerifier: String?,
+    fun twitterCallback(
+            @RequestParam(value = "oauth_token", required = false) oauthToken: String?,
+            @RequestParam(value = "oauth_verifier", required = false) oauthVerifier: String?,
                         @RequestParam(value = "denied", required = false) denied: String?,
                         request: HttpServletRequest, response: HttpServletResponse?, model: Model): String {
         if (denied != null) {
@@ -36,6 +38,7 @@ class TwitterCallbackController {
             request.session.removeAttribute("requestToken")
             //store the user name so we can display it on the web page
             model.addAttribute("username", twitter.screenName)
+
             return "redirect:http://localhost:3000/callback"
         } catch (e: Exception) {
             LOGGER.error("Problem getting token!", e)
