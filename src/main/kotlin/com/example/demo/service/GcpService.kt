@@ -4,6 +4,7 @@ import com.google.cloud.language.v1.Document
 import com.google.cloud.language.v1.LanguageServiceClient
 import org.springframework.core.io.ClassPathResource
 import org.springframework.stereotype.Service
+import twitter4j.Status
 import java.util.*
 
 @Service
@@ -15,13 +16,15 @@ class GcpService(
     init {
         try {
             val google: MutableMap<String, String> = HashMap()
-            google["GOOGLE_APPLICATION_CREDENTIALS"] = ClassPathResource("Twitter-Auth-GCP-26ac58ff4c87.json").uri.path
+            google["GOOGLE_APPLICATION_CREDENTIALS"] = ClassPathResource("MyTwitterProject-1389e6d939b8.json").uri.path
             setEnv(google)
             client = LanguageServiceClient.create()
         } catch (e: java.lang.Exception) {
-            println()
+            println(e)
         }
     }
+
+
 
     //ref https://stackoverflow.com/questions/51127494/define-google-application-credentials-for-google-cloud-speech-java-desktop-app
     fun setEnv(newenv: Map<String, String>?) {
@@ -52,14 +55,14 @@ class GcpService(
         }
     }
 
-    fun getText(text: String):String{
-        if (client != null){
-            val doc = Document.newBuilder().setContent(text).setType(Document.Type.PLAIN_TEXT).setLanguage("ja").build()
-            val sentiment = client?.analyzeSentiment(doc)?.documentSentiment
-            return ("Sentiment: ${sentiment?.score}, ${sentiment?.magnitude}")
-        }
-        return ""
-    }
+//    fun getText(text: String):String{
+//        if (client != null){
+//            val doc = Document.newBuilder().setContent(text).setType(Document.Type.PLAIN_TEXT).setLanguage("ja").build()
+//            val sentiment = client?.analyzeSentiment(doc)?.documentSentiment
+//            return ("Sentiment: ${sentiment?.score}, ${sentiment?.magnitude}")
+//        }
+//        return ""
+//    }
 
     fun getSentimentScore(text: String):Float?{
         if (client != null){
@@ -70,7 +73,7 @@ class GcpService(
         return -1f
     }
 
-    fun isPositive(text: String): Boolean{
+    fun isPositiveText(text: String): Boolean{
         return (getSentimentScore(text)!! > 0f)
     }
 

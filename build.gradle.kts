@@ -40,7 +40,7 @@ dependencies {
 	//implementation("org.springframework.social:spring-social-core")
 	implementation("org.springframework.boot:spring-boot-starter-thymeleaf")
 	implementation("org.springframework.boot:spring-boot-starter-web")
-	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
+	// implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 //	implementation("com.google.cloud:google-cloud-language:1.19.4")
@@ -57,17 +57,18 @@ dependencies {
 	}
 
 	/*jackson*/
-	implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.8.5")
-	implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.10.1")
-	implementation("com.fasterxml.jackson.core:jackson-core:2.10.1")
-	implementation("com.fasterxml.jackson.core:jackson-databind:2.10.1")
-	implementation("com.fasterxml.jackson.core:jackson-annotations:2.10.1")
-	implementation("com.fasterxml.jackson.datatype:jackson-datatype-jdk8:2.10.1")
-	implementation("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.10.1")
-	implementation("com.fasterxml.jackson.module:jackson-module-parameter-names:2.10.1")
-	implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.10.1")
-	implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.10.1")
-	implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.10.1")
+//    implementation("com.fasterxml.jackson.core:jackson-databind:2.3.4")
+//	implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.8.5")
+//	implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.10.1")
+//	implementation("com.fasterxml.jackson.core:jackson-core:2.10.1")
+//	implementation("com.fasterxml.jackson.core:jackson-databind:2.10.1")
+//	implementation("com.fasterxml.jackson.core:jackson-annotations:2.10.1")
+//	implementation("com.fasterxml.jackson.datatype:jackson-datatype-jdk8:2.10.1")
+//	implementation("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.10.1")
+//	implementation("com.fasterxml.jackson.module:jackson-module-parameter-names:2.10.1")
+//	implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.10.1")
+//	implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.10.1")
+//	implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.10.1")
 
 
 	testImplementation("org.springframework.security:spring-security-test")
