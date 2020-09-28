@@ -36,8 +36,8 @@ class TwitterService(
 
     fun buildClient(accessToken: String? = null, tokenSecret: String? = null): Twitter {
         var twitter: Twitter? = null
-        val consumerKey = "UdESkq1kKYNBeh9YwfcEuGIfr"
-        val consumerSecret = "l768oF7q8Sfd8LZJa3ItCDUFhTl9zUYqGkwHYt2mCfydWVGTWQ"
+        val consumerKey = "*******"
+        val consumerSecret = "********"
         val builder = ConfigurationBuilder()
         builder.setOAuthConsumerKey(consumerKey)
         builder.setOAuthConsumerSecret(consumerSecret)
